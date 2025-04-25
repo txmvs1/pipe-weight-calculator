@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+    "lib": ["ES2017", "DOM",], // Specify library files to be included in the compilation
+    "target": "es2017", // Output ES2017 JavaScript
+    "module": "CommonJS", // Use CommonJS module system
+    "strict": false, // Enable all strict type-checking options
+    "esModuleInterop": true, // Allow default imports from CommonJS modules
+    "resolveJsonModule": true, // Allow importing JSON files
+  },
+  
+  }
+  

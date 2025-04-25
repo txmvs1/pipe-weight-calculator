@@ -1,0 +1,245 @@
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --background-color: #f5f5f5;
+    --card-color: #ffffff;
+    --border-color: #e0e0e0;
+    --text-color: #333333;
+    --success-color: #2ecc71;
+
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+.container {
+    max-width: 1000px;
+    margin:  0 auto;
+    padding: 0px;
+    background-color: var(--background-color)
+}
+
+h1 {
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 25px;
+    padding-bottom: 5px;
+    border-bottom: 2.5px solid var(--secondary-color);
+    font-size: 20px;
+}
+
+h2 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-size: 15px;
+    font-family: "Arial Black"
+}
+
+.calculator-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 5px;
+    padding: 10px;
+}
+
+.left-box, .right-box {
+    display: flex;
+    flex-direction: column; 
+    gap: 10px;
+    border: 1px solid var(--border-color);
+    background-color: var(--card-color);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+
+}
+
+@media (max-width: 768px) {
+    .calculator {
+        grid-template-columns: 1fr;
+    }
+}
+
+.input-section {
+    background-color: var(--card-color);
+    margin-right: 10px;
+}
+
+.scheme-section{
+    background-color: var(--card-color);
+}
+
+.canvas-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+#pipeCanvas {
+    margin-top: -10px; /* posun canvasu o 50px nahoru */
+}
+
+.results-section {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--card-color);
+
+    }
+
+.form-group {
+    margin-bottom: 10px;
+
+}
+
+.param-group {
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+select, input {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid var(--border-color);
+    border-radius: 0px;
+    font-size: 14px;
+}
+
+input[type="number"] {
+    -appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+select:focus, input:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+}
+
+.toggle-switch {
+    display: flex;
+    align-items: center;
+}
+
+.toggle-label {
+    margin-left: 10px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 18px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 18px;
+}
+
+.slider:before { 
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--secondary-color);
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px var(--secondary-color);
+}
+
+input:checked + .slider:before {
+    transform: translateX(22px);
+}
+
+.result-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 3px 0;
+    border-bottom: 1px solid var(--border-color);
+    align-items: center;
+}
+
+.result-value {
+    color: var(--text-color);
+    font-size: 14px;
+}
+
+.totalweight-value {
+    font-weight: bold;
+    color: var(--text-color);
+    font-size: 14px;
+}
+
+.totalweight {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    }
+
+.insulation-options {
+    margin-top: 50px;
+    margin-bottom: 5px;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 0px;
+    background-color: #f9f9f9;
+}
+
+#insulationThicknessGroup {
+    margin-top: 10px;
+    display: block;
+}
+
+#pipeLength {
+    margin-bottom: 20px;
+}
+
+.pipe-info {
+    display: none;
+}
