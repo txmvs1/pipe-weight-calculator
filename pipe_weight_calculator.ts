@@ -1,4 +1,4 @@
-// Definice typů
+// Type definitions
 interface PipeSize {
     pipeOuterDiameter: number;
     wallThickness: number;
@@ -23,7 +23,7 @@ interface DatabaseSchema {
     };
 }
 
-// Třída pro kalkulačku hmotnosti potrubí
+// Class for pipe weight calculation
 class PipeWeightCalculator {
     private pipeTypeSelect: HTMLSelectElement = document.createElement('select');
     private pipeDiameterSelect: HTMLSelectElement = document.createElement('select');
@@ -41,16 +41,16 @@ class PipeWeightCalculator {
     private totalWeightElement: HTMLElement= document.createElement('div');
     private pipeInfo: any;
     
-    // Canvas pro vykreslení schématu
+    // Canvas
     private pipeCanvas: HTMLCanvasElement= document.createElement('canvas');
     private canvasContext: CanvasRenderingContext2D | null= null;
 
-    // Data z JSON
+    // JSON data
     private database!: DatabaseSchema;
     private WATER_DENSITY: number=1000;
 
     constructor() {
-        // Nejprve načteme data a pak inicializujeme UI
+        // Data loading, UI initialization
         this.loadDatabase().then(() => {
             this.initElements();
             this.setupEventListeners();
@@ -64,7 +64,7 @@ class PipeWeightCalculator {
         });
     }
 
-    // Načtení databáze z externího JSON souboru
+    // Loading database from JSON
     private async loadDatabase(): Promise<void> {
         try {
             const response = await fetch('pipe-database.json');
@@ -81,7 +81,7 @@ class PipeWeightCalculator {
     }
 
     private initElements(): void {
-        // DOM elementy
+        // DOM elements
         this.pipeTypeSelect = document.getElementById("pipeType") as HTMLSelectElement;
         if (!this.pipeTypeSelect) {
             throw new Error("Element with ID 'pipeType' not found");
@@ -284,7 +284,7 @@ class PipeWeightCalculator {
         this.totalWeightElement.textContent = totalWeight.toFixed(2) + " kg";
     }
 
-    // Vykreslení schématu potrubí pomocí Canvas
+    // Scheme plotting
     private drawPipeSchematic(): void {
         if (!this.canvasContext) {
             console.error("Canvas context is not available");
@@ -297,10 +297,10 @@ class PipeWeightCalculator {
         const centerX: number = canvas.width / 2;
         const centerY: number = canvas.height / 2;
         
-        // Vyčištění plátna
+        // Canvas cleaning
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         
-        // Získání dat potrubí
+        // Getting pipe data
         const selectedType = this.pipeTypeSelect.value;
         const selectedSize = this.pipeDiameterSelect.value;
         const hasInsulation = this.hasInsulationCheckbox.checked;
@@ -313,40 +313,40 @@ class PipeWeightCalculator {
         const wallThickness = sizeData.wallThickness;
         const innerDiameter = pipeOuterDiameter - 2 * wallThickness;
         
-        // Tloušťka izolace
+        // Insulation thickness
         let insulationThickness = 0;
         if (hasInsulation) {
             insulationThickness = parseInt(this.insulationThicknessSelect.value);
         }
         
-        // Konstanty pro vykreslení - pro zobrazení v měřítku
+        // Scale
         const scale: number = 1;
         
-        // Poloměry pro vykreslení
+        // Dimensions for plotting
         const outerRadius: number = 75;
         const innerRadius: number = 60;
         const insulationRadius: number = 130;
         
-        // Vykreslení izolace, pokud je zaškrtnuto
+        // Plotting insulation if checked
         if (hasInsulation) {
-            // Vykreslení izolace
+            // Plotting insulation
             ctx.beginPath();
             ctx.arc(centerX, centerY, insulationRadius, 0, Math.PI * 2);
             ctx.fillStyle = '#cccccc';
             ctx.fill();
             
-            // Přidání vzoru izolace
+            // Plotting an insulation pattern
             ctx.save();
             ctx.beginPath();
             ctx.arc(centerX, centerY, insulationRadius, 0, Math.PI * 2);
             ctx.clip();
             
-            // Vykreslení vzoru mřížky
+            // Plotting grid pattern
             ctx.strokeStyle = '#999999';
             ctx.lineWidth = 1;
             const spacing: number = 15;
             
-            // Vykreslení čar v úhlu 45 stupňů
+            // Plotting grid pattern lines at a 45-degree angle
             for (let i = -canvas.width; i <= canvas.width * 2; i += spacing) {
                 ctx.beginPath();
                 ctx.moveTo(i, 0);
@@ -354,7 +354,7 @@ class PipeWeightCalculator {
                 ctx.stroke();
             }
             
-            // Vykreslení čar v úhlu 135 stupňů
+            // Plotting grid pattern lines at a 135-degree angle
             for (let i = -canvas.width; i <= canvas.width * 2; i += spacing) {
                 ctx.beginPath();
                 ctx.moveTo(i, canvas.width);
@@ -365,137 +365,137 @@ class PipeWeightCalculator {
             ctx.restore();
         }
         
-        // Vykreslení vnější stěny potrubí
+        // Plotting the outer wall of the pipe
         ctx.beginPath();
         ctx.arc(centerX, centerY, outerRadius, 0, Math.PI * 2);
         ctx.fillStyle = '#666666';
         ctx.fill();
         
-        // Vykreslení vnitřní stěny potrubí (prázdná nebo vodní plocha dle nastavení)
+        // Plotting the inner wall of the pipe
         ctx.beginPath();
         ctx.arc(centerX, centerY, innerRadius, 0, Math.PI * 2);
-        ctx.fillStyle = filledWithWater ? '#00ccff' : '#f5f5f5'; // Modrá pro vodu, světle šedá pro prázdné potrubí
+        ctx.fillStyle = filledWithWater ? '#00ccff' : '#f5f5f5'; 
         ctx.fill();
         
-        // Vykreslení středových čar
+        // Plotting center lines
         ctx.strokeStyle = 'red';
         ctx.setLineDash([2, 2]);
         ctx.lineWidth = 0.75;
         
-        // Horizontální středová čára
+        // Horizontal center line
         ctx.beginPath();
         ctx.moveTo(centerX - insulationRadius - 5, centerY);
         ctx.lineTo(centerX + insulationRadius + 5, centerY);
         ctx.stroke();
         
-        // Vertikální středová čára
+        // Vertical center line
         ctx.beginPath();
         ctx.moveTo(centerX, centerY - insulationRadius - 5);
         ctx.lineTo(centerX, centerY + insulationRadius + 5);
         ctx.stroke();
         
-        // Vykreslení rozměrových čar
+        // Plotting dimensions lines
         ctx.setLineDash([]);
         ctx.strokeStyle = 'blue';
         ctx.lineWidth = 0.75;
         
-        // Vnější průměr - horní kóta
+        // Outter diameter dimension
         const topLine: number = centerY - insulationRadius-10;
         
-        // Vykreslení horizontální čáry vnějšího průměru
+        // Plotting horinzontal line of outter diamater dimension
         ctx.beginPath();
         ctx.moveTo(centerX - outerRadius, topLine);
         ctx.lineTo(centerX + outerRadius + 5, topLine);
         ctx.stroke();
         
-        // Levá značka pro vnější průměr - šikmá
+        // Plotting left arrow of outter diamater dimension
         ctx.beginPath();
         ctx.moveTo(centerX - outerRadius - 5, topLine + 5);
         ctx.lineTo(centerX - outerRadius + 5, topLine - 5);
         ctx.stroke();
         
-        // Pravá značka pro vnější průměr - šikmá
+        // Plotting right arrow of outter diamater dimension
         ctx.beginPath();
         ctx.moveTo(centerX + outerRadius - 5, topLine + 5);
         ctx.lineTo(centerX + outerRadius + 5, topLine - 5);
         ctx.stroke();
         
-        // Vykreslení levé vertikální čáry vnějšího průměru
+        // Plotting left vertical line of outter diamater dimension
         ctx.beginPath();
         ctx.moveTo(centerX - outerRadius, topLine - 5);
         ctx.lineTo(centerX - outerRadius, centerY);
         ctx.stroke();
         
-        // Vykreslení pravé vertikální čáry vnějšího průměru
+        // Plotting right vertical line of outter diamater dimension
         ctx.beginPath();
         ctx.moveTo(centerX + outerRadius, topLine - 5);
         ctx.lineTo(centerX + outerRadius, centerY);
         ctx.stroke();
         
-        // Popisek pro průměr
+        // Plotting text of outter diamater dimension
         ctx.font = '12px Arial';
         ctx.fillStyle = 'black';
         ctx.textAlign = 'center';
         ctx.fillText(pipeOuterDiameter.toString() + " mm", centerX, topLine - 10);
         
-        // Rozměr tloušťky stěny - spodní kóta
+        // Wall thickness dimension
         const bottomLine: number = centerY + insulationRadius + 10;
         
-        // Vykreslení horizontální čáry tloušťky stěny
+        // Plotting horizontal line of wall thickness dimension
         ctx.beginPath();
         ctx.moveTo(centerX + innerRadius - 5, bottomLine);
         ctx.lineTo(centerX + outerRadius + 50, bottomLine);
         ctx.stroke();
         
-        // Vykreslení levé vertikální čáry tloušťky stěny
+        // Plotting left vertical line of wall thickness dimension
         ctx.beginPath();
         ctx.moveTo(centerX + innerRadius, bottomLine + 5);
         ctx.lineTo(centerX + innerRadius, centerY);
         ctx.stroke();
         
-        // Vykreslení pravé vertikální čáry tloušťky stěny
+        // Plotting right vertical line of wall thickness dimension
         ctx.beginPath();
         ctx.moveTo(centerX + outerRadius, bottomLine + 5);
         ctx.lineTo(centerX + outerRadius, centerY);
         ctx.stroke();
         
-        // Levá značka pro tloušťku stěny - šikmá
+        // Plotting left arrow of wall thickness dimension
         ctx.beginPath();
         ctx.moveTo(centerX + innerRadius - 5, bottomLine + 5);
         ctx.lineTo(centerX + innerRadius + 5, bottomLine - 5);
         ctx.stroke();
         
-        // Pravá značka pro tloušťku stěny - šikmá
+        // Plotting right arrow of wall thickness dimension
         ctx.beginPath();
         ctx.moveTo(centerX + outerRadius - 5, bottomLine + 5);
         ctx.lineTo(centerX + outerRadius + 5, bottomLine - 5);
         ctx.stroke();
         
-        // Popisek pro tloušťku stěny
+        // Plotting text of wall thickness dimension
         ctx.textAlign = 'left';
         ctx.fillText(wallThickness.toString() + " mm", centerX + outerRadius + 20, bottomLine - 5);
         
-        // Vykreslení rozměru tloušťky izolace, pokud je izolováno
+        // Plotting dimensions of insulation thickness (if insulated)
         if (hasInsulation) {
-            // Vykreslení horizontální čáry tloušťky izolace
+            // Plotting horizontal line of insulation thickness dimension
             ctx.beginPath();
             ctx.moveTo(centerX - insulationRadius - 5, topLine);
             ctx.lineTo(centerX - outerRadius, topLine);
             ctx.stroke();
             
-            // Vykreslení levé vertikální čáry tloušťky izolace
+            // Plotting left vercital line of insulation thickness dimension
             ctx.beginPath();
             ctx.moveTo(centerX - insulationRadius, topLine - 5);
             ctx.lineTo(centerX - insulationRadius, centerY);
             ctx.stroke();
             
-            // Levá značka pro tloušťku izolace - šikmá
+            // Plotting left arrow of insulation thickness dimension
             ctx.beginPath();
             ctx.moveTo(centerX - insulationRadius - 5, topLine + 5);
             ctx.lineTo(centerX - insulationRadius + 5, topLine - 5);
             ctx.stroke();
             
-            // Popisek pro tloušťku izolace
+            // Plotting text of insulation thickness dimension
             ctx.textAlign = 'right';
             ctx.fillText(insulationThickness.toString() + " mm", centerX - outerRadius - 10, topLine - 10);
         }
