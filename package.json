@@ -1,3 +1,0 @@
-"scripts": {
-  "build": "tsc && cp index.html dist/ && cp styles.css dist/"
-}
