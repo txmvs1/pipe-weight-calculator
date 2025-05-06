@@ -1,0 +1,173 @@
+{
+    "pipeTypes": {
+        "steel_din2448": {
+                "name": "Steel seamless EN 10220 (DIN 2448)",
+            "density": 7850,
+            "sizes": {
+                "10": { "pipeOuterDiameter": 17.2, "wallThickness": 1.8 },
+                "15": { "pipeOuterDiameter": 21.3, "wallThickness": 2.0 },
+                "20": { "pipeOuterDiameter": 26.9, "wallThickness": 2.3 },
+                "25": { "pipeOuterDiameter": 33.7, "wallThickness": 2.6 },
+                "32": { "pipeOuterDiameter": 42.4, "wallThickness": 2.6 },
+                "40": { "pipeOuterDiameter": 48.3, "wallThickness": 2.6 },
+                "50": { "pipeOuterDiameter": 60.3, "wallThickness": 2.9 },
+                "65": { "pipeOuterDiameter": 76.1, "wallThickness": 2.9 },
+                "80": { "pipeOuterDiameter": 88.9, "wallThickness": 3.2 },
+                "100": { "pipeOuterDiameter": 114.3, "wallThickness": 3.6 },
+                "125": { "pipeOuterDiameter": 139.7, "wallThickness": 4.0 },                
+                "150": { "pipeOuterDiameter": 168.3, "wallThickness": 4.5 },
+                "200": { "pipeOuterDiameter": 219.1, "wallThickness": 6.3 },
+                "250": { "pipeOuterDiameter": 273.0, "wallThickness": 6.3 },
+                "300": { "pipeOuterDiameter": 323.9, "wallThickness": 7.1 },
+                "350": { "pipeOuterDiameter": 355.6, "wallThickness": 8.0 },
+                "400": { "pipeOuterDiameter": 406.4, "wallThickness": 8.8 },
+                "450": { "pipeOuterDiameter": 457.0, "wallThickness": 10.0 },
+                "500": { "pipeOuterDiameter": 508.0, "wallThickness": 11.0 },
+                "600": { "pipeOuterDiameter": 610.0, "wallThickness": 12.5 }
+            }
+        },
+
+        "steel_sst": {
+                "name": "Stainless steel EN 1127 (DIN 17456)",
+            "density": 7900,
+            "sizes": {
+                "15": { "pipeOuterDiameter": 21.3, "wallThickness": 2.0 },
+                "20": { "pipeOuterDiameter": 26.9, "wallThickness": 2.0 },
+                "25": { "pipeOuterDiameter": 33.7, "wallThickness": 2.0 },
+                "32": { "pipeOuterDiameter": 42.4, "wallThickness": 2.0 },
+                "40": { "pipeOuterDiameter": 48.3, "wallThickness": 2.0 },
+                "50": { "pipeOuterDiameter": 60.3, "wallThickness": 2.0 },
+                "65": { "pipeOuterDiameter": 76.1, "wallThickness": 2.0 },
+                "80": { "pipeOuterDiameter": 88.9, "wallThickness": 2.0 },
+                "100": { "pipeOuterDiameter": 114.3, "wallThickness": 2.0 },
+                "125": { "pipeOuterDiameter": 139.7, "wallThickness": 3.0 },              
+                "150": { "pipeOuterDiameter": 168.3, "wallThickness": 3.0 },
+                "200": { "pipeOuterDiameter": 219.1, "wallThickness": 3.0 },
+                "250": { "pipeOuterDiameter": 273.0, "wallThickness": 3.0 },
+                "300": { "pipeOuterDiameter": 323.9, "wallThickness": 3.0 },
+                "350": { "pipeOuterDiameter": 355.6, "wallThickness": 3.0 },
+                "400": { "pipeOuterDiameter": 406.4, "wallThickness": 3.0 },
+                "450": { "pipeOuterDiameter": 457.0, "wallThickness": 3.0 },
+                "500": { "pipeOuterDiameter": 508.0, "wallThickness": 4.0 },
+                "600": { "pipeOuterDiameter": 610.0, "wallThickness": 4.0 }
+            }
+        },
+
+        "copper": {
+            "name": "Copper EN 1057 (DIN 1786)",
+            "density": 8960,
+            "sizes": {
+                "10": { "pipeOuterDiameter": 12, "wallThickness": 1.0 },
+                "12": { "pipeOuterDiameter": 15, "wallThickness": 1.0 },
+                "15": { "pipeOuterDiameter": 18, "wallThickness": 1.0 },
+                "20": { "pipeOuterDiameter": 22, "wallThickness": 1.0 },
+                "25": { "pipeOuterDiameter": 28, "wallThickness": 1.5 },
+                "32": { "pipeOuterDiameter": 35, "wallThickness": 1.5 },
+                "40": { "pipeOuterDiameter": 42, "wallThickness": 1.5 },
+                "50": { "pipeOuterDiameter": 54, "wallThickness": 2.0 },
+                "65": { "pipeOuterDiameter": 76.1, "wallThickness": 2.0 },
+                "80": { "pipeOuterDiameter": 88.9, "wallThickness": 2.0 },
+                "100": { "pipeOuterDiameter": 108, "wallThickness": 2.5 }
+            }
+        },
+
+        "pe": {
+            "name": "PE",
+            "density": 960,
+            "sizes": {
+                "40": { "pipeOuterDiameter": 40, "wallThickness": 1.8 },
+                "50": { "pipeOuterDiameter": 50, "wallThickness": 1.8 },
+                "63": { "pipeOuterDiameter": 63, "wallThickness": 2.0 },
+                "75": { "pipeOuterDiameter": 75, "wallThickness": 2.3 },
+                "90": { "pipeOuterDiameter": 90, "wallThickness": 2.8 },
+                "110": { "pipeOuterDiameter": 110, "wallThickness": 3.4 },
+                "125": { "pipeOuterDiameter": 125, "wallThickness": 3.9 },
+                "160": { "pipeOuterDiameter": 160, "wallThickness": 4.9 },
+                "180": { "pipeOuterDiameter": 180, "wallThickness": 5.5 },
+                "200": { "pipeOuterDiameter": 200, "wallThickness": 6.2 },
+                "225": { "pipeOuterDiameter": 225, "wallThickness": 6.9 },
+                "250": { "pipeOuterDiameter": 250, "wallThickness": 7.7 },
+                "280": { "pipeOuterDiameter": 280, "wallThickness": 8.6 },
+                "315": { "pipeOuterDiameter": 315, "wallThickness": 9.7 }
+                
+            }
+        },
+
+        "ppr": {
+            "name": "PPR",
+            "density": 905,
+            "sizes": {
+                "16": { "pipeOuterDiameter": 16, "wallThickness": 2.2 },
+                "20": { "pipeOuterDiameter": 20, "wallThickness": 2.8 },
+                "25": { "pipeOuterDiameter": 25, "wallThickness": 3.5 },
+                "32": { "pipeOuterDiameter": 32, "wallThickness": 4.4 },
+                "40": { "pipeOuterDiameter": 40, "wallThickness": 5.5 },
+                "50": { "pipeOuterDiameter": 50, "wallThickness": 6.9 },
+                "63": { "pipeOuterDiameter": 63, "wallThickness": 8.6 },
+                "75": { "pipeOuterDiameter": 75, "wallThickness": 10.3 },
+                "90": { "pipeOuterDiameter": 90, "wallThickness": 12.3 },
+                "110": { "pipeOuterDiameter": 110, "wallThickness": 15.1 },
+                "125": { "pipeOuterDiameter": 125, "wallThickness": 17.1 }
+            }
+        },
+
+        "pvc": {
+            "name": "PVC",
+            "density": 1400,
+            "sizes": {
+                "40": { "pipeOuterDiameter": 40, "wallThickness": 1.8 },
+                "50": { "pipeOuterDiameter": 50, "wallThickness": 1.8 },
+                "63": { "pipeOuterDiameter": 63, "wallThickness": 1.9 },
+                "75": { "pipeOuterDiameter": 75, "wallThickness": 2.2 },
+                "90": { "pipeOuterDiameter": 90, "wallThickness": 2.7 },
+                "110": { "pipeOuterDiameter": 110, "wallThickness": 3.2 },
+                "125": { "pipeOuterDiameter": 125, "wallThickness": 3.7 },
+                "140": { "pipeOuterDiameter": 140, "wallThickness": 4.1 },
+                "160": { "pipeOuterDiameter": 160, "wallThickness": 4.7 },
+                "180": { "pipeOuterDiameter": 180, "wallThickness": 5.3 },
+                "200": { "pipeOuterDiameter": 200, "wallThickness": 5.9 },
+                "225": { "pipeOuterDiameter": 225, "wallThickness": 6.6 },
+                "250": { "pipeOuterDiameter": 250, "wallThickness": 7.3 },
+                "280": { "pipeOuterDiameter": 280, "wallThickness": 8.2 },
+                "315": { "pipeOuterDiameter": 315, "wallThickness": 9.2 }
+            }
+        }
+    },
+    "insulationTypes": {
+        "no_insulation": {
+            "name": "-",
+            "density": 0
+        },
+        "mineral_wool": {
+            "name": "Mineral wool",
+            "density": 80
+        },
+        
+        "pur": {
+            "name": "PUR",
+            "density": 120
+        }
+    },
+    "sheetTypes": {
+
+        "no_sheet": {
+            "name": "-",
+            "density": 0,
+            "thickness": 0
+        },
+        "alu_foil": {
+            "name": "Aluminum foil",
+            "density": 2700,
+            "thickness": 0.5
+        },
+
+        "steel_sheet": {
+            "name": "Steel sheet",
+            "density": 7850,
+            "thickness": 1
+        }
+    },
+    "constants": {
+        "WATER_DENSITY": 1000
+    }
+}
