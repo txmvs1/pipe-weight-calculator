@@ -144,6 +144,24 @@
             "density": 120
         }
     },
+    "sheetTypes": {
+
+        "no_sheet": {
+            "name": "-",
+            "density": 0,
+            "thickness": 0
+        },
+        "alu_foil": {
+            "name": "Aluminum foil",
+            "density": 2700,
+            "thickness": 0.5
+        },
+
+        "steel_sheet": {
+            "name": "Steel sheet",
+            "density": 7850,
+            "thickness": 1
+        },
     "constants": {
         "WATER_DENSITY": 1000
     }
