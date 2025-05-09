@@ -134,10 +134,6 @@
         }
     },
     "insulationTypes": {
-        "no_insulation": {
-            "name": "-",
-            "density": 0
-        },
         "mineral_wool": {
             "name": "Mineral wool",
             "density": 80
