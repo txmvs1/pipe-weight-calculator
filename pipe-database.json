@@ -134,13 +134,21 @@
         }
     },
     "insulationTypes": {
+        
+        "synth_rubber": {
+            "name": "Synth. rubber (50 kg/m\u00B3)",
+            "density": 50 
+        },
         "mineral_wool": {
-            "name": "Mineral wool",
+            "name": "Mineral wool (80 kg/m\u00B3)",
             "density": 80
         },
-        
         "pur": {
-            "name": "PUR",
+            "name": "PUR (100 kg/m\u00B3)",
+            "density": 100
+        },
+        "fiber_glass": {
+            "name": "Fiber glass (120 kg/m\u00B3)",
             "density": 120
         }
     },
@@ -152,13 +160,13 @@
             "thickness": 0
         },
         "alu_foil": {
-            "name": "Aluminum foil",
+            "name": "Aluminum foil (0.1mm)",
             "density": 2700,
-            "thickness": 0.5
+            "thickness": 0.1
         },
 
         "steel_sheet": {
-            "name": "Steel sheet",
+            "name": "Steel sheet (1.0mm)",
             "density": 7850,
             "thickness": 1
         }

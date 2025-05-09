@@ -239,6 +239,14 @@ class PipeWeightCalculator {
             console.error("Canvas context is not available");
             return;
         }
+        //Color codes:
+        const pipeColor = '#666666';
+        const insulationColor = '#ffec83';
+        const insulationPatternColor = '#5c4903';
+        const waterColor = '#00ccff';
+        const noWaterColor = '#f5f5f5';
+        const sheetingColor = '#999999';
+        const outlineColor = '#000000';
         const ctx = this.canvasContext;
         const canvas = this.pipeCanvas;
         const centerX = canvas.width / 2;
@@ -250,6 +258,7 @@ class PipeWeightCalculator {
         const selectedSize = this.pipeDiameterSelect.value;
         const hasInsulation = this.hasInsulationCheckbox.checked;
         const filledWithWater = this.filledWithWaterCheckbox.checked;
+        const hasSheeting = this.sheetTypeSelect.selectedIndex > 0;
         // Pipe data
         const pipeData = this.database.pipeTypes[selectedType];
         const sizeData = pipeData.sizes[selectedSize];
@@ -264,22 +273,39 @@ class PipeWeightCalculator {
         const outerRadius = 75;
         const innerRadius = 60;
         const insulationRadius = 130;
+        const sheetingRadius = 135;
+        // Plotting sheeting (if insulation checked and sheeting type isn't "-")
+        if (hasInsulation && hasSheeting) {
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, sheetingRadius, 0, Math.PI * 2);
+            ctx.fillStyle = sheetingColor;
+            ctx.fill();
+            ctx.lineWidth = 0.75;
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, sheetingRadius, 0, Math.PI * 2);
+            ctx.strokeStyle = outlineColor;
+            ctx.stroke();
+        }
         // Plotting insulation if checked
         if (hasInsulation) {
-            // Plotting insulation
             ctx.beginPath();
             ctx.arc(centerX, centerY, insulationRadius, 0, Math.PI * 2);
-            ctx.fillStyle = '#cccccc';
+            ctx.fillStyle = insulationColor;
             ctx.fill();
+            ctx.lineWidth = 0.75;
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, insulationRadius, 0, Math.PI * 2);
+            ctx.strokeStyle = outlineColor;
+            ctx.stroke();
             // Plotting an insulation pattern
             ctx.save();
             ctx.beginPath();
             ctx.arc(centerX, centerY, insulationRadius, 0, Math.PI * 2);
             ctx.clip();
             // Plotting grid pattern
-            ctx.strokeStyle = '#999999';
+            ctx.strokeStyle = insulationPatternColor;
             ctx.lineWidth = 1;
-            const spacing = 15;
+            const spacing = 10;
             // Plotting grid pattern lines at a 45-degree angle
             for (let i = -canvas.width; i <= canvas.width * 2; i += spacing) {
                 ctx.beginPath();
@@ -299,13 +325,21 @@ class PipeWeightCalculator {
         // Plotting the outer wall of the pipe
         ctx.beginPath();
         ctx.arc(centerX, centerY, outerRadius, 0, Math.PI * 2);
-        ctx.fillStyle = '#666666';
+        ctx.fillStyle = pipeColor;
         ctx.fill();
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, outerRadius, 0, Math.PI * 2);
+        ctx.strokeStyle = outlineColor;
+        ctx.stroke();
         // Plotting the inner wall of the pipe
         ctx.beginPath();
         ctx.arc(centerX, centerY, innerRadius, 0, Math.PI * 2);
-        ctx.fillStyle = filledWithWater ? '#00ccff' : '#f5f5f5';
+        ctx.fillStyle = filledWithWater ? waterColor : noWaterColor;
         ctx.fill();
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, innerRadius, 0, Math.PI * 2);
+        ctx.strokeStyle = outlineColor;
+        ctx.stroke();
         // Plotting center lines
         ctx.strokeStyle = 'red';
         ctx.setLineDash([2, 2]);
@@ -322,10 +356,10 @@ class PipeWeightCalculator {
         ctx.stroke();
         // Plotting dimensions lines
         ctx.setLineDash([]);
-        ctx.strokeStyle = 'blue';
-        ctx.lineWidth = 0.75;
+        ctx.strokeStyle = '#0000ff';
+        ctx.lineWidth = 1;
         // Outter diameter dimension
-        const topLine = centerY - insulationRadius - 10;
+        const topLine = centerY - insulationRadius - 15;
         // Plotting horinzontal line of outter diamater dimension
         ctx.beginPath();
         ctx.moveTo(centerX - outerRadius, topLine);
@@ -361,7 +395,7 @@ class PipeWeightCalculator {
         // Plotting horizontal line of wall thickness dimension
         ctx.beginPath();
         ctx.moveTo(centerX + innerRadius - 5, bottomLine);
-        ctx.lineTo(centerX + outerRadius + 50, bottomLine);
+        ctx.lineTo(centerX + outerRadius + 65, bottomLine);
         ctx.stroke();
         // Plotting left vertical line of wall thickness dimension
         ctx.beginPath();
